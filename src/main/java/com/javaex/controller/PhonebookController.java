@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.javaex.dao.PhonebookDao;
 import com.javaex.service.PhonebookService;
 import com.javaex.vo.PersonVo;
 
@@ -17,7 +17,8 @@ import com.javaex.vo.PersonVo;
 public class PhonebookController {
 
 	//필드
-	
+	@Autowired
+	private PhonebookService phonebookService; 
 	//생성자
 	
 	//메소드gs
@@ -29,7 +30,6 @@ public class PhonebookController {
 	public String modify(@ModelAttribute PersonVo personVo) {
 		System.out.println("PhonebookController.modify()");
 		
-		PhonebookService phonebookService = new PhonebookService();
 		phonebookService.exeModify(personVo);
 		
 		return "redirect:/phone/list";
@@ -43,7 +43,7 @@ public class PhonebookController {
 		System.out.println("PhonebookController.modifyForm()");
 		
 		
-		PhonebookService phonebookService = new PhonebookService();
+		//PhonebookService phonebookService = new PhonebookService();
 		PersonVo personVo = phonebookService.exeModifyForm(no);
 		
 		model.addAttribute("personVo", personVo);
@@ -56,7 +56,7 @@ public class PhonebookController {
 	public String delete(@RequestParam("no") int no) {
 		System.out.println("PhonebookController.delete()");
 		
-		PhonebookService phonebookService = new PhonebookService();
+		//PhonebookService phonebookService = new PhonebookService();
 		phonebookService.exeDelete(no);
 		
 		return "redirect:/phone/list";
@@ -68,10 +68,9 @@ public class PhonebookController {
 	public String list(Model model) {
 		System.out.println("PhonebookController.list()");
 		
-		PhonebookService phonebookService = new PhonebookService();
+		//자동연결
+		//PhonebookService phonebookService = new PhonebookService();
 		List<PersonVo> personList =  phonebookService.exeList();
-		
-		
 		
 		model.addAttribute("pList", personList);
 		
@@ -88,7 +87,7 @@ public class PhonebookController {
 		
 		//서비스를 메모리에 올리고
 		//서비스의 메소드 사용
-		PhonebookService phonebookService = new PhonebookService();
+		//PhonebookService phonebookService = new PhonebookService();
 		phonebookService.exeWrite(personVo);
 		
 		//리스트로 리다이렉트
@@ -114,7 +113,7 @@ public class PhonebookController {
 		
 		//서비스를 메모리에 올리고
 		//서비스의 메소드 사용
-		PhonebookService phonebookService = new PhonebookService();
+		//PhonebookService phonebookService = new PhonebookService();
 		phonebookService.exeWrite(personVo);
 				
 		
@@ -131,10 +130,6 @@ public class PhonebookController {
 		
 		return "writeForm";
 	}
-	
-	
-
-	
 	
 	
 }
