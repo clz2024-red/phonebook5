@@ -19,6 +19,22 @@ public class PhonebookService {
 	//메소디 일반
 	
 	
+	//리스트
+	public List<PersonVo> exeList() {
+		System.out.println("PhonebookService.exeList()");
+		
+		//PhonebookDao phonebookDao = new PhonebookDao();
+		List<PersonVo> personList = phonebookDao.personSelect();
+		
+		return personList;
+	}
+	
+	
+	
+	
+	
+	
+	
 	//수정폼
 	public int exeModify(PersonVo personVo) {
 		System.out.println("PhonebookService.exeModify()");
@@ -52,17 +68,7 @@ public class PhonebookService {
 		return count;
 	}
 	
-	
-	//리스트
-	public List<PersonVo> exeList() {
-		System.out.println("PhonebookService.exeList()");
-		
-		//PhonebookDao phonebookDao = new PhonebookDao();
-		List<PersonVo> personList = phonebookDao.personSelect();
-		
-		return personList;
-	}
-	
+
 	
 	//등록
 	public int exeWrite(PersonVo personVo) {

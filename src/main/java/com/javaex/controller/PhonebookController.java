@@ -24,7 +24,26 @@ public class PhonebookController {
 	//메소드gs
 	//메소드일반
 	
-
+	// 리스트
+	@RequestMapping(value="/phone/list", method = {RequestMethod.GET, RequestMethod.POST})
+	public String list(Model model) {
+		System.out.println("PhonebookController.list()");
+		
+		//자동연결
+		//PhonebookService phonebookService = new PhonebookService();
+		List<PersonVo> personList =  phonebookService.exeList();
+		
+		model.addAttribute("pList", personList);
+		
+		return "list";
+	}
+	
+	
+	
+	
+	
+	
+	
 	// 수정
 	@RequestMapping(value="/phone/modify", method = {RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute PersonVo personVo) {
@@ -62,20 +81,7 @@ public class PhonebookController {
 		return "redirect:/phone/list";
 	}
 	
-	
-	// 리스트
-	@RequestMapping(value="/phone/list", method = {RequestMethod.GET, RequestMethod.POST})
-	public String list(Model model) {
-		System.out.println("PhonebookController.list()");
-		
-		//자동연결
-		//PhonebookService phonebookService = new PhonebookService();
-		List<PersonVo> personList =  phonebookService.exeList();
-		
-		model.addAttribute("pList", personList);
-		
-		return "list";
-	}
+
 	
 	//등록2
 	//localhost:8080/phonebook5/phone/write?name=황일영&hp=010&compay=02
