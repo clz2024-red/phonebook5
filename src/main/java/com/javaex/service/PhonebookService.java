@@ -50,11 +50,11 @@ public class PhonebookService {
 	}
 
 	// 수정폼
-	public PersonVo exeModifyForm2(int no) {
+	public Map<String, Object> exeModifyForm2(int no) {
 		System.out.println("PhonebookService.exeModifyForm2()");
 		
-		PersonVo personVo =phonebookDao.personSelectOne2(no);
-		return personVo;
+		Map<String, Object> pMap =phonebookDao.personSelectOne2(no);
+		return pMap;
 	}
 	
 	

@@ -42,16 +42,25 @@ public class PhonebookDao {
 		PersonVo personVo = sqlSession.selectOne("phonebook.selectOne", no);
 		System.out.println(personVo);
 		
+		
+		
 		return personVo;
 	}
 	
 	// 1개 가져오기2
-	public PersonVo personSelectOne2(int no) {
+	public Map<String, Object> personSelectOne2(int no) {
 		System.out.println("PhonebookDao.personSelectOne2()");
 	
-		System.out.println(no);
-		//PersonVo personVo = sqlSession.selectOne("phonebook.selectOne2", no);
-		return null;
+		Map<String, Object> pMap = sqlSession.selectOne("phonebook.selectOne2", no);
+		
+		/*
+		System.out.println(pMap.get("personId"));
+		System.out.println(pMap.get("name"));
+		System.out.println(pMap.get("hp"));
+		System.out.println(pMap.get("company"));
+		*/
+		
+		return pMap;
 	}
 	
 	

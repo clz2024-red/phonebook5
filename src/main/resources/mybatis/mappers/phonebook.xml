@@ -3,7 +3,7 @@
 
 <mapper namespace="phonebook">
 	<!-- personVo 매핑 -->
-	<resultMap id="resultMapPersonVo" type="com.javaex.vo.PersonVo" >
+	<resultMap id="resultMapPersonVo" type="PersonVo" >
 		<result column="person_id" property="personId"></result>
 		<result column="name" property="name"></result>
 		<result column="hp" property="hp"></result>
@@ -12,7 +12,7 @@
 	
 	
 	<!-- 데이타삭제 -->
-	<update id="delete" parameterType="com.javaex.vo.PersonVo">
+	<update id="delete" parameterType="PersonVo">
 		<![CDATA[   
 			delete from person
 			where person_id = #{personId}
@@ -21,7 +21,7 @@
 	
 	
 	<!-- 데이타수정 -->
-	<update id="update" parameterType="com.javaex.vo.PersonVo">
+	<update id="update" parameterType="PersonVo">
 		<![CDATA[   
 			update person
 			set name = #{name},
@@ -33,7 +33,7 @@
 	
 	
 	<!-- 1명데이타 가져오기 -->
-	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.PersonVo">
+	<select id="selectOne" parameterType="int" resultType="PersonVo">
 		<![CDATA[  
 			select 	person_Id,
 					name,
@@ -43,6 +43,21 @@
 			where person_id = #{no}
 		]]>
 	</select>
+	
+	<!-- 1명데이타 가져오기2 -->
+	<select id="selectOne2" parameterType="int" resultType="map">
+		<![CDATA[  
+			select 	person_Id as personId,
+					name,
+			        hp,
+			        company
+			from person
+			where person_id = #{no}
+		]]>
+	</select>
+	
+	
+	
 	
 	
 	
