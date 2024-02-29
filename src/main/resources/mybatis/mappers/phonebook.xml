@@ -2,21 +2,76 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="phonebook">
+	<!-- personVo 매핑 -->
+	<resultMap id="resultMapPersonVo" type="com.javaex.vo.PersonVo" >
+		<result column="person_id" property="personId"></result>
+		<result column="name" property="name"></result>
+		<result column="hp" property="hp"></result>
+		<result column="company" property="company"></result>
+	</resultMap>
 	
-	<!-- 전체리스트 가져오기 -->
-	<select id="select" resultType="com.javaex.vo.PersonVo">
-		select 	person_id,
-				name,
-		        hp,
-		        company
-		from person
+	
+	<!-- 데이타삭제 -->
+	<update id="delete" parameterType="com.javaex.vo.PersonVo">
+		<![CDATA[   
+			delete from person
+			where person_id = #{personId}
+		]]>
+	</update>
+	
+	
+	<!-- 데이타수정 -->
+	<update id="update" parameterType="com.javaex.vo.PersonVo">
+		<![CDATA[   
+			update person
+			set name = #{name},
+				hp = #{hp},
+			    company = #{company}
+			where person_id = #{personId}
+		]]>
+	</update>
+	
+	
+	<!-- 1명데이타 가져오기 -->
+	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.PersonVo">
+		<![CDATA[  
+			select 	person_Id,
+					name,
+			        hp,
+			        company
+			from person
+			where person_id = #{no}
+		]]>
 	</select>
 	
 	
 	
+	<!-- 1명 저장 -->
+	<insert id="insert" parameterType="com.javaex.vo.PersonVo">
+		<![CDATA[  
+			insert into person
+			values(null, #{name}, #{hp}, #{company})
+		]]>
+	</insert>
 	
-	<!-- 쿼리문 작성 inert -->
 	
+	<!-- 1명 저장  map 사용 -->
+	<insert id="insert2" parameterType="map">
+			insert into person
+			values(null, #{name}, #{hp}, #{company})
+	</insert>
+	
+	
+	<!-- 전체리스트 가져오기 -->
+	<select id="select" resultType="com.javaex.vo.PersonVo">
+		<![CDATA[  
+			select 	person_id personId,
+					name,
+			        hp,
+			        company
+			from person
+		]]>
+	</select>
 	<!-- 수정 -->
 
 </mapper>
